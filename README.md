@@ -60,12 +60,6 @@ This implementation uses an improved version of the original CheXNet model with 
 
 For training CheXNet with ChestX-ray14, we load the weights of DenseNet-121 pretrained on the ImageNet dataset, and then fine-tune on the ChestX-ray14 dataset. **GPU** and **Habana Gaudi** are adopted as accelerators for training, and DDP training is performed using multiple accelerators.
 
-First, we run a script to download the dataset.
-
-```bash
-$ bash batch_download.sh
-```
-
 ## Training
 
 In this implementation, you can choose between GPU and Habana Gaudi as the accelerators.
