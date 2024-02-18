@@ -41,13 +41,7 @@ The structure of the neural network is based on DenseNet121, and the output laye
 
 ## Usage
 
-First, run the script to download the dataset.
-
-```bash
-bash batch_download.sh
-```
-
-The next step is to set up a Python environment to optimize and quantize the model. This procedure is described in `run.sh`.
+The first step is to set up a Python environment to optimize and quantize the model. This procedure is described in `run.sh`.
 
 ```bash
 bash run.sh
