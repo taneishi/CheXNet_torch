@@ -1,0 +1,4 @@
+# a symbolic link for dataset directory.
+images
+model/chexnet.*
+model/densenet121.*

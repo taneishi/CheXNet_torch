@@ -1,0 +1,4 @@
+openvino_dev
+torchvision
+scikit-learn
+onnx
