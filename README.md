@@ -41,13 +41,27 @@ The structure of the neural network is based on DenseNet121, and the output laye
 
 ## Usage
 
-The first step is to set up a Python environment to optimize and quantize the model. This procedure is described in `run.sh`.
+The first step is to set up a Python environment to optimize and quantize the model.
 
 ```bash
-bash run.sh
+# Convert the PyTorch model to the ONNX format.
+python export_onnx.py --batch_size 100
+
+# fp32 model optimization.
+mo --input_model model/densenet121.onnx --output_dir model
+
+# Make annotations.
+mkdir -p annotations
+python annotation.py chestxray14 --annotation_file labels/test_list.txt -ss 1000 \
+    -o annotations -a chestxray14.pickle -m chestxray14.json --data_dir images
+
+# int8 quantization.
+pot -c config/chexnet_int8.yaml -e
 ```
 
-The following scripts are used to perform inference on the PyTorch, FP32 optimized and INT8 quantized models, respectively.
+Then copy generated file `chexnet-pytorch.xml` into `model` directory.
+
+The following script is used to perform inference on the PyTorch, FP32 optimized and INT8 quantized models.
 
 ```bash
 python main.py --mode torch
