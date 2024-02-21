@@ -48,19 +48,18 @@ We trained and validated the dataset by dividing it into a training set of 70\%,
 
 **Table 1. Percentage of thoracic disease in each split for training, validation, and testing of the ChestX-ray14 dataset.**
 
-## Model
+## Methods
 
+### Model
 
 For thoracic disease classification, it is possible to use models based on *convolutional neural networks*, CNN and *Vision Transformer*, here we use **CheXNet** proposed by Rajpurkar et al. in 2017[^Rajpurkar].
 CheXNet is a model based on DenseNet-121, a typical CNN, and inferences multi-label classification for thoracic diseases using chest X-ray images as input. The difference from DenseNet-121 is the addition of an output layer for classification of 14 diseases.
 
 This implementation uses an improved version of the original CheXNet model with a sigmoid function added to the final layer.
 
-## Methods
-
 For training CheXNet with ChestX-ray14, we load the weights of DenseNet-121 pretrained on the ImageNet dataset, and then fine-tune on the ChestX-ray14 dataset. **GPU** and **Habana Gaudi** are adopted as accelerators for training, and DDP training is performed using multiple accelerators.
 
-## Training
+### Training
 
 In this implementation, you can choose between GPU and Habana Gaudi as the accelerators.
 The Habana Gaudi hardware was tested on `dl1.24xlarge` instances provided by *Amazon Web Services*, AWS.
@@ -93,7 +92,7 @@ epoch   2 batch  3750/ 3750 train loss 1.4974 1047.659sec
 ...
 ```
 
-## Inference
+### Inference
 
 One effective approach to reduce the computational cost of inference is to optimize and quantize the model.
 If the computational cost can be reduced, edge computing using medical devices becomes feasible, and this will lower the barrier to adoption in clinical settings.
