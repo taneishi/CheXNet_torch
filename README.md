@@ -65,13 +65,7 @@ For training CheXNet with ChestX-ray14, we load the weights of DenseNet-121 pret
 In this implementation, you can choose between GPU and Habana Gaudi as the accelerators.
 The Habana Gaudi hardware was tested on `dl1.24xlarge` instances provided by *Amazon Web Services*, AWS.
 
-The following script installs the Python modules used for training and inference.
-
-```bash
-$ pip install -qr requirements.txt
-```
-
-The following commands perform DDP training using 8 Habana Gaudi accelerators.
+The following command performs DDP training using 8 Habana Gaudi accelerators.
 
 ```bash
 $ torchrun --nnodes=1 --nproc_per_node=8 main.py --hpu
