@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l nodes=1:gold6330
+#PBS -l nodes=1:ppn=2
 #PBS -N chexnet
 #PBS -j oe
 #PBS -o output.log

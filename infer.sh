@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -l nodes=1:gold6330
+#PBS -l nodes=1:ppn=2
 #PBS -N chexnet
 #PBS -j oe
 #PBS -o output.log
@@ -15,27 +15,6 @@ TOTAL_CORES=$((${CPUS}*${CORES}))
 echo "CPUS=${CPUS} CORES=${CORES} TOTAL_CORES=${TOTAL_CORES}"
 export OMP_NUM_THREADS=${TOTAL_CORES}
 export KMP_SETTING="KMP_AFFINITY=granularity=fine,compact,1,0"
-
-if [ ! -f model/densenet121.onnx ]; then
-    rm -f model/*.xml
-    python export_onnx.py --batch_size 100
-fi
-
-if [ ! -f model/densenet121.xml ]; then
-    # fp32 model optimization
-    mo --input_model model/densenet121.onnx --output_dir model
-fi
-
-if [ ! -f model/chexnet.xml ]; then
-    # make annotations
-    mkdir -p annotations
-    python annotation.py chestxray14 --annotation_file labels/test_list.txt -ss 1000 \
-        -o annotations -a chestxray14.pickle -m chestxray14.json --data_dir images
-
-    # int8 quantization
-    pot -c config/chexnet_int8.yaml -e
-    cp $(ls results/chexnet_DefaultQuantization/*/optimized/* | tail -3) model
-fi
 
 python infer.py --mode torch --batch_size 10 --test_image_list labels/test_list.txt
 python infer.py --mode fp32 --batch_size 10 --test_image_list labels/test_list.txt
