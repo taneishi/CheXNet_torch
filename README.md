@@ -9,7 +9,7 @@ For deep learning for medical images, it was difficult to prepare a widely share
 - [*NIH Clinical Center provides one of the largest publicly available chest x-ray datasets to scientific community*, 2017.](https://www.nih.gov/news-events/news-releases/nih-clinical-center-provides-one-largest-publicly-available-chest-x-ray-datasets-scientific-community)
 - [*NIH Clinical Center releases dataset of 32,000 CT images*, 2018.](https://www.nih.gov/news-events/news-releases/nih-clinical-center-releases-dataset-32000-ct-images)
 
-Although medical imaging datasets are being developed, large datasets and the associated large-scale models are becoming computationally expensive for training and inference. On the other hand, when dealing with new infectious diseases, etc., it is necessary to train models from real clinical data as early as possible,  hence the acceleration of training using *accelerators* and *parallel computing* remains an important factor.
+Although medical imaging datasets are being developed, large datasets and the associated large-scale models are becoming computationally expensive for training and inference. On the other hand, when dealing with new infectious diseases, etc., it is necessary to train models from real clinical data as early as possible, hence the acceleration of training using *accelerators* and *parallel computing* remains an important factor.
 
 In addition, it is also necessary to make it possible to utilize highly accurate models in medical practice at a reasonable computational cost for their widespread use. In particular, it would be useful in terms of cost if the inference models can be applied to edge computing in clinical setting.
 
