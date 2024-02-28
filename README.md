@@ -71,19 +71,19 @@ One effective approach to reduce the computational cost of inference is to optim
 For model optimization and quantization, we first convert the model from PyTorch format to ONNX format.
 
 ```console
-python export_onnx.py --batch_size 100
+$ python export_onnx.py --batch_size 100
 ```
 
 Next, optimize the ONNX format model in FP32 precision.
 
 ```console
-mo --input_model model/densenet121.onnx --output_dir model
+$ mo --input_model model/densenet121.onnx --output_dir model
 ```
 
 Before quantization to INT8 precision, generate annotations needed for the quantization process.
 
 ```console
-python annotation.py chestxray14 --data_dir images -ss 1000 \
+$ python annotation.py chestxray14 --data_dir images -ss 1000 \
     --annotation_file labels/test_list.txt \
     -o annotations -a chestxray14.pickle -m chestxray14.json
 ```
@@ -91,7 +91,7 @@ python annotation.py chestxray14 --data_dir images -ss 1000 \
 Finally, quantize the FP32 optmized model in INT8 precision.
 
 ```console
-pot -c config/chexnet_int8.yaml -e
+$ pot -c config/chexnet_int8.yaml -e
  ```
 
 Inference on the respective models for PyTorch, FP32 optimization, and INT8 quantization is performed by the following commands.
